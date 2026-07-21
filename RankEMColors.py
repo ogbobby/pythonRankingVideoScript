@@ -4,39 +4,53 @@ import random
 from yt_dlp import YoutubeDL
 from moviepy import VideoFileClip, concatenate_videoclips, TextClip, CompositeVideoClip
 import moviepy.video.fx as vfx
-#Next is skydiving fails, and nature fails
+from moviepy.video.fx import FadeIn
+
 # =====================================================================
 # 1. TEXT CONTENT CONFIGURATION (Change these for every new video)
 # =====================================================================
-VIDEO_TITLE = "Insane Parkour Fails"
-CLIP_DURATION = 10             
+VIDEO_TITLE = "Ranking Crazy Trickshots"
+CLIP_DURATION = 12             
 
 RANK_LABELS = {
-    5: "Yo.",
-    4: "What.",
-    3: "Brah.",
-    2: "Lol.",
-    1: "Oh."
+    
+    #8: " What. ",
+    #7: " Damn. ",
+    6: " Brah. ",
+    5: " Huh.",
+    4: " What.",
+    3: " Why.",
+    2: " Unreal.",
+    1: " Wow."
 }
 # =====================================================================
 # CUSTOM ROW COLORS: Assign a unique color to each specific line!
 # Accepts standard names like 'red', 'cyan', or custom Hex codes.
 # =====================================================================
 RANK_COLORS = {
-    5: "blue",  # Line 5 text will be Cyan
-    4: "red",  # Line 4 text will be Bright Red
-    3: "yellow",   # Line 3 text will be Yellow
-    2: "orange",  # Line 2 text will be Bright Green
+
+    #8: "orange",
+    #7: "red",  # Line 6 text will be Blue
+    6: "blue",  # Line 6 text will be Blue
+    5: "white",  # Line 5 text will be Cyan
+    4: "orange",  # Line 4 text will be Bright Red
+    3: "red",   # Line 3 text will be Yellow
+    2: "green",  # Line 2 text will be Bright Green
     1: "white"   # Line 1 text will be Purple/Magenta
 }
 
 
+# Configure your video links below. 
+# You can optionally add 'start' and 'end' seconds to manually trim a specific clip!
 TIKTOK_URLS = [
-    "https://www.tiktok.com/@olivernordin1/video/7436829959026494742?is_from_webapp=1&sender_device=pc",
-    "https://www.tiktok.com/@fantasthenics/video/7057539990460435718?is_from_webapp=1&sender_device=pc",  # Will become Rank #3
-    "https://www.tiktok.com/@thebrycetanner/video/6826077314942651653?is_from_webapp=1&sender_device=pc",   # Will become Rank #1 (Best)
-    "https://www.tiktok.com/@dominick_hughes/video/6818623419936984326?is_from_webapp=1&sender_device=pc",
-    "https://www.tiktok.com/@espn/video/7642010602336046366?is_from_webapp=1&sender_device=pc",  # Will become Rank #2
+    {"url": "https://www.tiktok.com/@espn/video/7662416617116011806?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310"}, #"start": 0, "end": 4},
+    {"url": "https://www.tiktok.com/@espn/video/7660194190680149278?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310"}, #"start": 0, "end": 2},
+    {"url": "https://www.tiktok.com/@houseofhighlights/video/7662119419031670030?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310"}, #"start": 8, "end": 11.5}, 
+    {"url": "https://www.tiktok.com/@bradendowns/video/7662926689629916429?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310"}, #"start": 0, "end": 13},
+    {"url": "https://www.tiktok.com/@trixshot/video/7369330680649633070?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310", "start": 32, "end": 50},
+    {"url": "https://www.tiktok.com/@_snappygilmore/video/7395259017376976159?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310", "start": 0, "end": 20},
+    #{"url": "https://www.tiktok.com/@lavander1237/video/7560347294961339704?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310"}, #"start": 20, "end": 23}
+    #{"url": "https://www.tiktok.com/@nate.shockey/video/7579753301583875359?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310"}
 ]
 
 # =====================================================================
@@ -49,31 +63,33 @@ FONT_PATH = "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"
 # --- NEW: AUTO-ADJUST BACKDROP POSITION ---
 # Shifts the background video clip to the right (in pixels) to avoid text overlap.
 # Set to 0 if you want the clip perfectly centered.
-VIDEO_X_OFFSET = 180          
+VIDEO_X_OFFSET = 75 #was 180          
 
 # Title Settings
-TITLE_FONT_SIZE = 65          
+TITLE_FONT_SIZE = 85          
 TITLE_COLOR = "red"       
 TITLE_STROKE_COLOR = "white"
-TITLE_STROKE_WIDTH = 6
+TITLE_STROKE_WIDTH = 4
 TITLE_BANNER_HEIGHT = 220     
 
 # Left-Side Number List Settings
 LIST_PADDING_LEFT = 60        
-LIST_START_Y = 550            
-LIST_SPACING_Y = 130
+LIST_START_Y = 550           
+LIST_SPACING_Y = 225 #was 130, then 160, 255 latest
 
 # --- NEW COLOR CONTROLS FOR THE LIST ---
 # Inactive Ranks (Default view for list items not currently playing)
-INACTIVE_FONT_SIZE = 45
+INACTIVE_FONT_SIZE = 55
 INACTIVE_NUM_COLOR = "white"      # The color of the number (e.g., "5.")
 INACTIVE_LABEL_COLOR = "#00FFFF"  # The color of the text words (e.g., "Wildest Play") - Accepts hex or color names!
-INACTIVE_STROKE_WIDTH = 3
+INACTIVE_STROKE_WIDTH = 6
+INACTIVE_STROKE_COLOR = "white"
 
 # Active Rank (The clip currently playing on screen)
-ACTIVE_FONT_SIZE = 55
+ACTIVE_FONT_SIZE = 90
 ACTIVE_COLOR = "yellow"           # Active line turns entirely Yellow to pop out
-ACTIVE_STROKE_WIDTH = 5
+ACTIVE_STROKE_WIDTH = 6
+ACTIVE_STROKE_COLOR = "red"
 
 #INACTIVE_FONT_SIZE = 45
 #INACTIVE_COLOR = "white"
@@ -107,19 +123,28 @@ def main():
     # Step 1: Download
     print(f"\n[1/4] Downloading {len(TIKTOK_URLS)} TikTok videos...")
     with YoutubeDL(ydl_opts) as ydl:
-        for url in TIKTOK_URLS:
+        for item in TIKTOK_URLS:
+            url = item["url"]  # Extracts the actual link string cleanly
             try:
                 info = ydl.extract_info(url, download=True)
                 filename = ydl.prepare_filename(info)
                 if not filename.endswith('.mp4'):
                     filename = os.path.splitext(filename) + '.mp4'
                 downloaded_files.append(filename)
+                item["filename_cache"] = filename # Remembers which downloaded file belongs to this link
             except Exception as e:
                 print(f"Failed to download {url}. Error: {e}")
 
     # Step 2: Shuffle
+    #print("\n[2/4] Shuffling video play order...")
+    #random.shuffle(downloaded_files)
+    #print(" -> New video sequence generated successfully!")
+
     print("\n[2/4] Shuffling video play order...")
-    random.shuffle(downloaded_files)
+    random.shuffle(TIKTOK_URLS) # Shuffles the master config dictionary list
+    
+    # Rebuild downloaded_files list based on the new randomized dictionary order
+    downloaded_files = [item["filename_cache"] for item in TIKTOK_URLS if "filename_cache" in item]
     print(" -> New video sequence generated successfully!")
 
     # Step 3: Layout Composition
@@ -136,13 +161,36 @@ def main():
         
         # Load and trim video source
         full_clip = VideoFileClip(file_path)
-        end_time = min(CLIP_DURATION, full_clip.duration)
-        trimmed_clip = full_clip.subclipped(0, end_time)
+        #end_time = min(CLIP_DURATION, full_clip.duration)
+        #trimmed_clip = full_clip.subclipped(0, end_time)
+
+        # --- NEW: DYNAMIC OVERRIDE TRIMMING LOGIC ---
+        # Find the original link dictionary configuration that matches this downloaded file
+        # (We search our list to check if you gave it custom start/end timestamps)
+        matched_config = next((item for item in TIKTOK_URLS if item.get("filename_cache") == file_path), None)
+        
+        if matched_config and "start" in matched_config and "end" in matched_config:
+            # Safely clamp timestamps to the video's actual physical boundary limitations
+            start_time = max(0, matched_config["start"])
+            end_time = min(full_clip.duration, matched_config["end"])
+            print(f"   -> Applying custom manual trim: Playing from {start_time}s to {end_time}s")
+        else:
+            # Default fallback rule if no custom values were provided at the top
+            start_time = 0
+            end_time = min(CLIP_DURATION, full_clip.duration)
+            print(f"   -> Using default timing parameters: Playing from 0s to {end_time}s")
+            
+        trimmed_clip = full_clip.subclipped(start_time, end_time)
         
         # Scale the clip to fit the master layout height comfortably
         scaled_clip = trimmed_clip.resized(height=MASTER_HEIGHT - (TITLE_BANNER_HEIGHT * 2))
         if scaled_clip.w > MASTER_WIDTH:
             scaled_clip = scaled_clip.resized(width=MASTER_WIDTH)
+
+        # --- FIX: FORCE EVEN DIMENSIONS FOR THE VIDEO MASK ---
+        new_w = scaled_clip.w if scaled_clip.w % 2 == 0 else scaled_clip.w - 1
+        new_h = scaled_clip.h if scaled_clip.h % 2 == 0 else scaled_clip.h - 1
+        scaled_clip = scaled_clip.resized((new_w, new_h))    
         
         # --- SHIFT VIDEO POSITION RIGHT ---
         # Calculates horizontal center, then injects our offset to slide the video right
@@ -167,31 +215,6 @@ def main():
         title_clip = title_clip.with_position((0, 0)).with_duration(trimmed_clip.duration)
         layers.append(title_clip)
 
-        """ # --- B. BUILD LEFT-SIDE RANKING LIST ---
-        for r in range(total_clips, 0, -1):
-            is_active = (r == current_rank_num)
-            
-            text_color = ACTIVE_COLOR if is_active else INACTIVE_COLOR
-            text_size = ACTIVE_FONT_SIZE if is_active else INACTIVE_FONT_SIZE
-            stroke_w = ACTIVE_STROKE_WIDTH if is_active else INACTIVE_STROKE_WIDTH
-            
-            label_text = RANK_LABELS.get(r, "")
-            display_string = f"{r}. {label_text}"
-            
-            list_item_clip = TextClip(
-                text=display_string,
-                font=FONT_PATH,
-                font_size=text_size,
-                color=text_color,
-                stroke_color='black',
-                stroke_width=stroke_w,
-                method="pango" 
-            )
-            
-            y_pos = LIST_START_Y + ((total_clips - r) * LIST_SPACING_Y)
-            list_item_clip = list_item_clip.with_position((LIST_PADDING_LEFT, y_pos)).with_duration(trimmed_clip.duration)
-            layers.append(list_item_clip)
- """
         # --- B. BUILD LEFT-SIDE RANKING LIST WITH INDEPENDENT WORD COLORS ---
         for r in range(total_clips, 0, -1):
             is_active = (r == current_rank_num)
@@ -256,7 +279,9 @@ def main():
         # We blend each multi-layered segment seamlessly as it transitions onto screen
         if len(processed_clips) > 0:
             #final_clip = CrossFadeIn(final_clip, 0.5)
-            final_clip = final_clip.with_effects([vfx.CrossFadeIn(0.5)])
+            #final_clip = final_clip.with_effects([vfx.CrossFadeIn(0.5)])
+            #from moviepy.video.fx import fadein
+            final_clip = final_clip.with_effects([FadeIn(0.5)])
             
         processed_clips.append(final_clip)
 
