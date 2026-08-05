@@ -1,22 +1,6 @@
-close calls
-"https://www.tiktok.com/@wildernessescape.alberta/video/7654986084203400469?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310"
-"https://www.tiktok.com/@espn/video/7660675247573634334?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310"
-"https://www.tiktok.com/@tanner.witt/video/7118402548863634730?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310"
-"https://www.tiktok.com/@mlb/video/7646608662902902046?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310"
-"https://www.tiktok.com/@user14021676822422/video/7659856074631023894?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310"
-
-
-Skydiving fails
-""
-""
-""
-""
-""
-
-
-Nature fails
-""
-""
-""
-""
-""
+https://www.tiktok.com/@espn/video/7669964036766747935?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310 end 12
+https://www.tiktok.com/@joelbarreira/video/7036481614511099141?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310 start 0 end 5
+https://www.tiktok.com/@andyschrock/video/7657015212540742943?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310 start 52 end 61
+https://www.tiktok.com/@jmtrickshots/video/7593080218890374414?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310 start 39.5 end 44
+https://www.tiktok.com/@thatll.work/video/6881264412653522182?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310 start 10 end 13
+https://www.tiktok.com/@houseofhighlights/video/7450248686866566446?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310 start 0 end 16

@@ -9,19 +9,19 @@ from moviepy.video.fx import FadeIn
 # =====================================================================
 # 1. TEXT CONTENT CONFIGURATION (Change these for every new video)
 # =====================================================================
-VIDEO_TITLE = "Ranking Crazy Trickshots"
+VIDEO_TITLE = "Ranking Awesome Must See Trickshots"
 CLIP_DURATION = 12             
 
 RANK_LABELS = {
     
     #8: " What. ",
     #7: " Damn. ",
-    6: " Brah. ",
+    6: " Crazy. ",
     5: " Huh.",
-    4: " What.",
-    3: " Why.",
-    2: " Unreal.",
-    1: " Wow."
+    4: " Ah.",
+    3: " Huh.",
+    2: " Wow.",
+    1: " Brah."
 }
 # =====================================================================
 # CUSTOM ROW COLORS: Assign a unique color to each specific line!
@@ -30,25 +30,25 @@ RANK_LABELS = {
 RANK_COLORS = {
 
     #8: "orange",
-    #7: "red",  # Line 6 text will be Blue
-    6: "blue",  # Line 6 text will be Blue
-    5: "white",  # Line 5 text will be Cyan
-    4: "orange",  # Line 4 text will be Bright Red
-    3: "red",   # Line 3 text will be Yellow
-    2: "green",  # Line 2 text will be Bright Green
-    1: "white"   # Line 1 text will be Purple/Magenta
+    #7: "red",  # Line 6 text will be 
+    6: "orange",  # Line 6 text will be
+    5: "blue",  # Line 5 text will be 
+    4: "white",  # Line 4 text will be 
+    3: "green",   # Line 3 text will be 
+    2: "white",  # Line 2 text will be 
+    1: "red"   # Line 1 text will be 
 }
 
 
 # Configure your video links below. 
 # You can optionally add 'start' and 'end' seconds to manually trim a specific clip!
 TIKTOK_URLS = [
-    {"url": "https://www.tiktok.com/@espn/video/7662416617116011806?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310"}, #"start": 0, "end": 4},
-    {"url": "https://www.tiktok.com/@espn/video/7660194190680149278?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310"}, #"start": 0, "end": 2},
-    {"url": "https://www.tiktok.com/@houseofhighlights/video/7662119419031670030?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310"}, #"start": 8, "end": 11.5}, 
-    {"url": "https://www.tiktok.com/@bradendowns/video/7662926689629916429?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310"}, #"start": 0, "end": 13},
-    {"url": "https://www.tiktok.com/@trixshot/video/7369330680649633070?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310", "start": 32, "end": 50},
-    {"url": "https://www.tiktok.com/@_snappygilmore/video/7395259017376976159?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310", "start": 0, "end": 20},
+    {"url": "https://www.tiktok.com/@espn/video/7640878738661461279?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310", "start": 0, "end": 15},
+    {"url": "https://www.tiktok.com/@hulett_brothers/video/7145946399455317294?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310", "start": 40, "end": 46.5},
+    {"url": "https://www.tiktok.com/@trickshotbros.93/video/7666225847296167182?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310", "start": 23.5, "end": 30}, 
+    {"url": "https://www.tiktok.com/@thatll.work/video/6974071715513044230?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310", "start": 41.5, "end": 45.5},
+    {"url": "https://www.tiktok.com/@adambobrowofficial/video/7485996460039834910?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310"}, #"start": 22, "end": 26.5},
+    {"url": "https://www.tiktok.com/@espn/video/7366012887141256490?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310"}, #"start": 18, "end": 38},
     #{"url": "https://www.tiktok.com/@lavander1237/video/7560347294961339704?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310"}, #"start": 20, "end": 23}
     #{"url": "https://www.tiktok.com/@nate.shockey/video/7579753301583875359?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310"}
 ]
