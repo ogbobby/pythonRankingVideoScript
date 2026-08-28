@@ -44,13 +44,18 @@ RANK_COLORS = {
 }
 
 # Configure your video links below.
-TIKTOK_URLS = [
+VIDEO_SOURCES = [
         {"url": "https://www.tiktok.com/@espn/video/7669964036766747935?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310", "start": 0, "end": 12},
         {"url": "https://www.tiktok.com/@joelbarreira/video/7036481614511099141?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310", "start": 0, "end": 5},
         {"url": "https://www.tiktok.com/@andyschrock/video/7657015212540742943?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310", "start": 52, "end": 61},
         {"url": "https://www.tiktok.com/@jmtrickshots/video/7593080218890374414?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310", "start": 39.5, "end": 44.5},
         {"url": "https://www.tiktok.com/@thatll.work/video/6881264412653522182?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310", "start": 10, "end": 13},
         {"url": "https://www.tiktok.com/@houseofhighlights/video/7450248686866566446?is_from_webapp=1&sender_device=pc&web_id=7659949271056631310", "start": 0, "end": 16},
+
+        # Local videos (uncomment and add your own files)
+      # {"local": "C:/Users/YourName/Videos/clip1.mp4"},
+      # {"local": "C:/Users/YourName/Videos/clip2.mp4", "start": 5, "end": 20},
+      # {"local": "/home/user/Videos/my_video.mp4"},
 ]
 
 # =====================================================================
