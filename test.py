@@ -19,13 +19,13 @@ from moviepy import concatenate_audioclips
 # =====================================================================
 # 1. TEXT CONTENT CONFIGURATION (Change these for every new video)
 # =====================================================================
-VIDEO_TITLE = "Ranking Mind Blowing Trickshots"
+VIDEO_TITLE = "Ranking Straight Magical Trickshots"
 CLIP_DURATION = 12
 
 RANK_LABELS = {
     #8: " What. ",
     #7: " Damn. ",
-    6: " Crazy. ",
+    #6: " Crazy. ",
     5: "Crazy ",
     4: "Wow ",
     3: "Insane ",
@@ -40,7 +40,7 @@ RANK_LABELS = {
 RANK_COLORS = {
     #8: "orange",
     #7: "red",
-    6: "orange",
+    #6: "orange",
     5: "orange",
     4: "blue",
     3: "white",
@@ -56,12 +56,12 @@ RANK_COLORS = {
 # Both support optional "start" and "end" parameters for trimming!
 VIDEO_SOURCES = [
     # TikTok videos
-    {"url": "https://www.tiktok.com/@devinburtley/video/6812337281450446086?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029"}, #"start": 0, "end": 14},
-    {"url": "https://www.tiktok.com/@markletrickshots/video/7507311814741445930?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029"}, #"start": 0, "end": 14},
-    {"url": "https://www.tiktok.com/@kaz.egan/video/7677434235325582622?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029", "start": 5, "end": 16},
-    {"url": "https://www.tiktok.com/@user8166965087490/video/7544228733381512503?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029", "start": 10, "end": 14},
-    {"url": "https://www.tiktok.com/@stunningscenes0/video/7392955671290907911?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029"}, #"start": 0, "end": 9},
-    {"url": "https://www.tiktok.com/@whistle/video/7350125514054438174?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029", "start": 5, "end": 11},
+    {"url": "https://www.tiktok.com/@espn/video/7679079330743356703?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029"}, #"start": 0, "end": 14},
+    {"url": "https://www.tiktok.com/@ggefhff/video/7677928182053342495?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029", "start": 13, "end": 16.5},
+    {"url": "https://www.tiktok.com/@thatsamazing/video/7001904890008046853?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029"}, #"start": 5, "end": 16},
+    {"url": "https://www.tiktok.com/@espn/video/7564919128344022303?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029", "start": 0, "end": 17},
+    {"url": "https://www.tiktok.com/@dustin.kunze5/video/7677900943358283039?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029", "start": 0, "end": 7.5},
+    #{"url": "https://www.tiktok.com/@whistle/video/7350125514054438174?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029", "start": 5, "end": 11},
 
     # Local videos (uncomment and add your own files)
     #{"local": "/home/ogbobby/Documents/git/RedditVideoScraper/library_nextfuckinglevel/nextfuckinglevel/RonaldoInsaneHeader.mp4", "start": 2, "end": 17},
@@ -284,10 +284,10 @@ def main():
     if processed_clips:
         print("\n[4/4] Stitching final video output file with transitions...")
         temp_filename = "temp_unbranded_compilation.mp4"
-        output_filename = "829.mp4"
+        output_filename = "830.mp4"
         
         # Audio assets and configuration paths
-        music_audio_path = "Oil_on_the_Record.mp3"
+        music_audio_path = "Subway_Altar.mp3"
         scratch_audio_path = "record_scratch.mp3"
         bruh_audio_path = "deep_bruh.mp3"
         logo_path = "channel_logo.png"
