@@ -19,18 +19,19 @@ from moviepy import concatenate_audioclips
 # =====================================================================
 # 1. TEXT CONTENT CONFIGURATION (Change these for every new video)
 # =====================================================================
-VIDEO_TITLE = "Ranking Ultra Elite Trickshots"
+
+VIDEO_TITLE = ""
 CLIP_DURATION = 12
 
 RANK_LABELS = {
     #8: " What. ",
     #7: " Damn. ",
     #6: " Crazy. ",
-    5: "Crazy ",
-    4: "Wow ",
-    3: "Insane ",
-    2: "Amazing ",
-    1: "Brah. "
+    5: "",
+    4: "",
+    3: "",
+    2: "",
+    1: ""
 }
 
 # =====================================================================
@@ -56,17 +57,19 @@ RANK_COLORS = {
 # Both support optional "start" and "end" parameters for trimming!
 VIDEO_SOURCES = [
     # TikTok videos
-    {"url": "https://www.tiktok.com/@flickgodtt/video/7637161501748366614?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029", "start": 8.5, "end": 14.5},
-    {"url": "https://www.tiktok.com/@poolstrikertrickshots/video/7506575559737019670?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029"}, #"start": 13, "end": 16.5},
-    {"url": "https://www.tiktok.com/@bond442sports/video/7416500608158485802?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029"}, #"start": 0, "end": 5},
-    {"url": "https://www.tiktok.com/@nba/video/7375536984409836843?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029", "start": 0, "end": 14},
-    {"url": "https://www.tiktok.com/@henrywild96/video/7508931522699742495?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029"}, #"start": 0, "end": 7.5},
+    #{"url": "https://www.tiktok.com/@flickgodtt/video/7637161501748366614?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029", "start": 8.5, "end": 14.5},
+    #{"url": "https://www.tiktok.com/@poolstrikertrickshots/video/7506575559737019670?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029"}, #"start": 13, "end": 16.5},
+    #{"url": "https://www.tiktok.com/@bond442sports/video/7416500608158485802?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029"}, #"start": 0, "end": 5},
+    #{"url": "https://www.tiktok.com/@nba/video/7375536984409836843?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029", "start": 0, "end": 14},
+    #{"url": "https://www.tiktok.com/@henrywild96/video/7508931522699742495?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029"}, #"start": 0, "end": 7.5},
     #{"url": "https://www.tiktok.com/@whistle/video/7350125514054438174?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029", "start": 5, "end": 11},
 
     # Local videos (uncomment and add your own files)
-    #{"local": "/home/ogbobby/Documents/git/RedditVideoScraper/library_nextfuckinglevel/nextfuckinglevel/RonaldoInsaneHeader.mp4", "start": 2, "end": 17},
-    # {"local": "C:/Users/YourName/Videos/clip2.mp4", "start": 5, "end": 20},
-    # {"local": "/home/user/Videos/my_video.mp4"},
+     {"local": "/home/ogbobby/Documents/git/postedVideos/RankingInsaneNatureFails.mp4"}, #"start": 2, "end": 17},
+     {"local": "/home/ogbobby/Documents/git/postedVideos/RankingHilariousPetFails.mp4"}, #"start": 5, "end": 20},
+     {"local": "/home/ogbobby/Documents/git/postedVideos/RankingSwimmingFails.mp4"},
+     {"local": "/home/ogbobby/Documents/git/postedVideos/RankingDivingBoardFails.mp4"}, #"start": 2, "end": 17},
+     {"local": "/home/ogbobby/Documents/git/postedVideos/RankingInsaneParkourFails.mp4"}, #"start": 2, "end": 17},
 ]
 
 # =====================================================================
@@ -150,9 +153,11 @@ def download_tiktok_video(url):
         except Exception as e:
             print(f"Failed to download {url}. Error: {e}")
             return None
-
 def process_single_video(source, index, total_clips, processed_clips):
     """Process a single video source (either local or TikTok URL)."""
+    # TOGGLE: Set to True to re-enable text overlays, or False to turn them off completely
+    ENABLE_TEXT_OVERLAYS = True 
+    
     current_rank_num = total_clips - index
     
     if "local" in source:
@@ -185,7 +190,10 @@ def process_single_video(source, index, total_clips, processed_clips):
         
         trimmed_clip = full_clip.subclipped(start_time, end_time).without_audio()
         
-        scaled_clip = trimmed_clip.resized(height=MASTER_HEIGHT - (TITLE_BANNER_HEIGHT * 2))
+        # Adjust height based on whether text banner padding is required
+        target_height = (MASTER_HEIGHT - (TITLE_BANNER_HEIGHT * 2)) if ENABLE_TEXT_OVERLAYS else MASTER_HEIGHT
+        scaled_clip = trimmed_clip.resized(height=target_height)
+        
         if scaled_clip.w > MASTER_WIDTH:
             scaled_clip = scaled_clip.resized(width=MASTER_WIDTH)
 
@@ -199,60 +207,162 @@ def process_single_video(source, index, total_clips, processed_clips):
         
         layers = [scaled_clip]
 
-        title_clip = TextClip(
-            text=VIDEO_TITLE, font=FONT_PATH, font_size=TITLE_FONT_SIZE, color=TITLE_COLOR,
-            stroke_color=TITLE_STROKE_COLOR, stroke_width=TITLE_STROKE_WIDTH,
-            size=(MASTER_WIDTH, TITLE_BANNER_HEIGHT), method="caption", text_align="center", bg_color=(10, 10, 10, 240)    
-        )
-        title_clip = title_clip.with_position((0, 0)).with_duration(trimmed_clip.duration)
-        layers.append(title_clip)
-
-        # Ranking list
-        for r in range(total_clips, 0, -1):
-            is_active = (r == current_rank_num)
-            text_size = ACTIVE_FONT_SIZE if is_active else INACTIVE_FONT_SIZE
-            stroke_w = ACTIVE_STROKE_WIDTH if is_active else INACTIVE_STROKE_WIDTH
-            
-            if is_active:
-                num_color = ACTIVE_COLOR
-                label_color = ACTIVE_COLOR
-            else:
-                num_color = RANK_COLORS.get(r, "white")
-                label_color = RANK_COLORS.get(r, "white") 
-            
-            label_text = RANK_LABELS.get(r, "")
-            
-            num_box_size = (120, text_size + 40)
-            label_box_size = (500, text_size + 40) #was 500
-
-            num_clip = TextClip(
-                text=f"{r}. ", font=FONT_PATH, font_size=text_size, color=num_color,
-                stroke_color='black', stroke_width=stroke_w, method="caption",
-                size=num_box_size, text_align="left"
+        # Only process title text and numbered lists if enabled
+        if ENABLE_TEXT_OVERLAYS:
+            title_clip = TextClip(
+                text=VIDEO_TITLE, font=FONT_PATH, font_size=TITLE_FONT_SIZE, color=TITLE_COLOR,
+                stroke_color=TITLE_STROKE_COLOR, stroke_width=TITLE_STROKE_WIDTH,
+                size=(MASTER_WIDTH, TITLE_BANNER_HEIGHT), method="caption", text_align="center", bg_color=(10, 10, 10, 240)    
             )
-            
-            label_clip = TextClip(
-                text=label_text, font=FONT_PATH, font_size=text_size, color=label_color,
-                stroke_color='black', stroke_width=stroke_w, method="caption",
-                size=label_box_size, text_align="left"
-            )
-            
-            y_pos = LIST_START_Y + ((total_clips - r) * LIST_SPACING_Y)
-            
-            # This tighter offset pulls the text closer to the numbers
-            label_offset = 60 if is_active else 35 #was 75 and 35
-            
-            num_clip = num_clip.with_position((LIST_PADDING_LEFT, y_pos)).with_duration(trimmed_clip.duration)
-            label_clip = label_clip.with_position((LIST_PADDING_LEFT + label_offset, y_pos)).with_duration(trimmed_clip.duration)
-            
-            layers.append(num_clip)
-            layers.append(label_clip)
+            title_clip = title_clip.with_position((0, 0)).with_duration(trimmed_clip.duration)
+            layers.append(title_clip)
+
+            # Ranking list
+            for r in range(total_clips, 0, -1):
+                is_active = (r == current_rank_num)
+                text_size = ACTIVE_FONT_SIZE if is_active else INACTIVE_FONT_SIZE
+                stroke_w = ACTIVE_STROKE_WIDTH if is_active else INACTIVE_STROKE_WIDTH
+                
+                if is_active:
+                    num_color = ACTIVE_COLOR
+                    label_color = ACTIVE_COLOR
+                else:
+                    num_color = RANK_COLORS.get(r, "white")
+                    label_color = RANK_COLORS.get(r, "white") 
+                
+                label_text = RANK_LABELS.get(r, "")
+                
+                num_box_size = (120, text_size + 40)
+                label_box_size = (500, text_size + 40)
+
+                num_clip = TextClip(
+                    text=f"{r}. ", font=FONT_PATH, font_size=text_size, color=num_color,
+                    stroke_color='black', stroke_width=stroke_w, method="caption",
+                    size=num_box_size, text_align="left"
+                )
+                
+                label_clip = TextClip(
+                    text=label_text, font=FONT_PATH, font_size=text_size, color=label_color,
+                    stroke_color='black', stroke_width=stroke_w, method="caption",
+                    size=label_box_size, text_align="left"
+                )
+                
+                y_pos = LIST_START_Y + ((total_clips - r) * LIST_SPACING_Y)
+                label_offset = 60 if is_active else 35
+                
+                num_clip = num_clip.with_position((LIST_PADDING_LEFT, y_pos)).with_duration(trimmed_clip.duration)
+                label_clip = label_clip.with_position((LIST_PADDING_LEFT + label_offset, y_pos)).with_duration(trimmed_clip.duration)
+                
+                layers.append(num_clip)
+                layers.append(label_clip)
             
         final_clip = CompositeVideoClip(layers, size=(MASTER_WIDTH, MASTER_HEIGHT))
         return final_clip
     except Exception as e:
         print(f"   ❌ Error processing video: {e}")
         return None
+#def process_single_video(source, index, total_clips, processed_clips):
+#    """Process a single video source (either local or TikTok URL)."""
+#    current_rank_num = total_clips - index
+#    
+#    if "local" in source:
+#        file_path = source["local"]
+#        print(f" -> Position {index + 1} assigned to: {current_rank_num}. (Local file: {os.path.basename(file_path)})")
+#        if not os.path.exists(file_path):
+#            print(f"   ⚠️ Warning: Local file not found: {file_path}")
+#            return None
+#    elif "url" in source:
+#        print(f" -> Position {index + 1} assigned to: {current_rank_num}. (Downloading TikTok...)")
+#        file_path = download_tiktok_video(source["url"])
+#        if not file_path:
+#            return None
+#        source["filename_cache"] = file_path
+#    else:
+#        print(f"   ⚠️ Warning: Invalid source format at position {index + 1}")
+#        return None
+#    
+#    try:
+#        full_clip = VideoFileClip(file_path)
+#        
+#        if "start" in source and "end" in source:
+#            start_time = max(0, source["start"])
+#            end_time = min(full_clip.duration, source["end"])
+#            print(f"   -> Applying custom manual trim: Playing from {start_time}s to {end_time}s")
+#        else:
+#            start_time = 0
+#            end_time = min(CLIP_DURATION, full_clip.duration)
+#            print(f"   -> Using default timing parameters: Playing from 0s to {end_time}s")
+#        
+#        trimmed_clip = full_clip.subclipped(start_time, end_time).without_audio()
+#        
+#        scaled_clip = trimmed_clip.resized(height=MASTER_HEIGHT - (TITLE_BANNER_HEIGHT * 2))
+#        if scaled_clip.w > MASTER_WIDTH:
+#            scaled_clip = scaled_clip.resized(width=MASTER_WIDTH)
+#
+#        new_w = scaled_clip.w if scaled_clip.w % 2 == 0 else scaled_clip.w - 1
+#        new_h = scaled_clip.h if scaled_clip.h % 2 == 0 else scaled_clip.h - 1
+#        scaled_clip = scaled_clip.resized((new_w, new_h))    
+#        
+#        x_position = (MASTER_WIDTH - scaled_clip.w) // 2 + VIDEO_X_OFFSET
+#        y_position = (MASTER_HEIGHT - scaled_clip.h) // 2
+#        scaled_clip = scaled_clip.with_position((x_position, y_position))
+#        
+#        layers = [scaled_clip]
+#
+#        title_clip = TextClip(
+#            text=VIDEO_TITLE, font=FONT_PATH, font_size=TITLE_FONT_SIZE, color=TITLE_COLOR,
+#            stroke_color=TITLE_STROKE_COLOR, stroke_width=TITLE_STROKE_WIDTH,
+#            size=(MASTER_WIDTH, TITLE_BANNER_HEIGHT), method="caption", text_align="center", bg_color=(10, 10, 10, 240)    
+#        )
+#        title_clip = title_clip.with_position((0, 0)).with_duration(trimmed_clip.duration)
+#        layers.append(title_clip)
+#
+#        # Ranking list
+#        for r in range(total_clips, 0, -1):
+#            is_active = (r == current_rank_num)
+#            text_size = ACTIVE_FONT_SIZE if is_active else INACTIVE_FONT_SIZE
+#            stroke_w = ACTIVE_STROKE_WIDTH if is_active else INACTIVE_STROKE_WIDTH
+#            
+#            if is_active:
+#                num_color = ACTIVE_COLOR
+#                label_color = ACTIVE_COLOR
+#            else:
+#                num_color = RANK_COLORS.get(r, "white")
+#                label_color = RANK_COLORS.get(r, "white") 
+#            
+#            label_text = RANK_LABELS.get(r, "")
+#            
+#            num_box_size = (120, text_size + 40)
+#            label_box_size = (500, text_size + 40) #was 500
+#
+#            num_clip = TextClip(
+#                text=f"{r}. ", font=FONT_PATH, font_size=text_size, color=num_color,
+#                stroke_color='black', stroke_width=stroke_w, method="caption",
+#                size=num_box_size, text_align="left"
+#            )
+#            
+#            label_clip = TextClip(
+#                text=label_text, font=FONT_PATH, font_size=text_size, color=label_color,
+#                stroke_color='black', stroke_width=stroke_w, method="caption",
+#                size=label_box_size, text_align="left"
+#            )
+#            
+#            y_pos = LIST_START_Y + ((total_clips - r) * LIST_SPACING_Y)
+#            
+#            # This tighter offset pulls the text closer to the numbers
+#            label_offset = 60 if is_active else 35 #was 75 and 35
+#            
+#            num_clip = num_clip.with_position((LIST_PADDING_LEFT, y_pos)).with_duration(trimmed_clip.duration)
+#            label_clip = label_clip.with_position((LIST_PADDING_LEFT + label_offset, y_pos)).with_duration(trimmed_clip.duration)
+#            
+#            layers.append(num_clip)
+#            layers.append(label_clip)
+#            
+#        final_clip = CompositeVideoClip(layers, size=(MASTER_WIDTH, MASTER_HEIGHT))
+#        return final_clip
+#    except Exception as e:
+#        print(f"   ❌ Error processing video: {e}")
+#        return None
 
 # =====================================================================
 # MAIN FUNCTION
@@ -284,10 +394,10 @@ def main():
     if processed_clips:
         print("\n[4/4] Stitching final video output file with transitions...")
         temp_filename = "temp_unbranded_compilation.mp4"
-        output_filename = "901.mp4"
+        output_filename = "CompWTrue.mp4"
         
         # Audio assets and configuration paths
-        music_audio_path = "Antique_Prism.mp3"
+        music_audio_path = "5Min.mp3"
         scratch_audio_path = "record_scratch.mp3"
         bruh_audio_path = "deep_bruh.mp3"
         logo_path = "channel_logo.png"
