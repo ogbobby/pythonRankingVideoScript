@@ -19,7 +19,7 @@ from moviepy import concatenate_audioclips
 # =====================================================================
 # 1. TEXT CONTENT CONFIGURATION (Change these for every new video)
 # =====================================================================
-VIDEO_TITLE = "Ranking Straight Magical Trickshots"
+VIDEO_TITLE = "Ranking Ultra Elite Trickshots"
 CLIP_DURATION = 12
 
 RANK_LABELS = {
@@ -56,11 +56,11 @@ RANK_COLORS = {
 # Both support optional "start" and "end" parameters for trimming!
 VIDEO_SOURCES = [
     # TikTok videos
-    {"url": "https://www.tiktok.com/@espn/video/7679079330743356703?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029"}, #"start": 0, "end": 14},
-    {"url": "https://www.tiktok.com/@ggefhff/video/7677928182053342495?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029", "start": 13, "end": 16.5},
-    {"url": "https://www.tiktok.com/@thatsamazing/video/7001904890008046853?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029"}, #"start": 5, "end": 16},
-    {"url": "https://www.tiktok.com/@espn/video/7564919128344022303?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029", "start": 0, "end": 17},
-    {"url": "https://www.tiktok.com/@dustin.kunze5/video/7677900943358283039?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029", "start": 0, "end": 7.5},
+    {"url": "https://www.tiktok.com/@flickgodtt/video/7637161501748366614?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029", "start": 8.5, "end": 14.5},
+    {"url": "https://www.tiktok.com/@poolstrikertrickshots/video/7506575559737019670?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029"}, #"start": 13, "end": 16.5},
+    {"url": "https://www.tiktok.com/@bond442sports/video/7416500608158485802?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029"}, #"start": 0, "end": 5},
+    {"url": "https://www.tiktok.com/@nba/video/7375536984409836843?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029", "start": 0, "end": 14},
+    {"url": "https://www.tiktok.com/@henrywild96/video/7508931522699742495?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029"}, #"start": 0, "end": 7.5},
     #{"url": "https://www.tiktok.com/@whistle/video/7350125514054438174?is_from_webapp=1&sender_device=pc&web_id=7673309675748886029", "start": 5, "end": 11},
 
     # Local videos (uncomment and add your own files)
@@ -284,10 +284,10 @@ def main():
     if processed_clips:
         print("\n[4/4] Stitching final video output file with transitions...")
         temp_filename = "temp_unbranded_compilation.mp4"
-        output_filename = "830.mp4"
+        output_filename = "901.mp4"
         
         # Audio assets and configuration paths
-        music_audio_path = "Subway_Altar.mp3"
+        music_audio_path = "Antique_Prism.mp3"
         scratch_audio_path = "record_scratch.mp3"
         bruh_audio_path = "deep_bruh.mp3"
         logo_path = "channel_logo.png"
